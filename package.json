@@ -1,0 +1,49 @@
+{
+  "name": "seaotter",
+  "version": "1.0.0",
+  "description": "Sea Otter App to search for github projects with language specification",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "cross-env NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack serve --open --hot\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toopham/seaotter.git"
+  },
+  "keywords": [
+    "GitHub",
+    "Sea",
+    "Otter",
+    "Coding",
+    "Challenge"
+  ],
+  "author": "Tu Pham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toopham/seaotter/issues"
+  },
+  "homepage": "https://github.com/toopham/seaotter#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.17.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^6.5.1",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.1"
+  }
+}
