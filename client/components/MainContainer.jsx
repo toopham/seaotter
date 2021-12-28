@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchBar from './SearchBar';
 import Search from './Search';
 import {Routes, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import * as actions from '../actions/actions';
 
 //mapState
@@ -20,15 +20,20 @@ const mapDispatchToProps = (dispatch) => ({
   updateSearch: (query) => {
     dispatch(actions.updateSearchActionCreator(query));
   },
-  updateResults: (res) => {
-    dispatch(actions.updateResultsActionCreator(res));
+  getResults: () => {
+    dispatch(actions.getResultsActionCreator());
   }
 });
 
 const MainContainer = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.getResultsActionCreator());
+  }, []);
 
 	return <div className="main">
-    <SearchBar lang={props.lang} query={props.query} updateLang={props.updateLang} updateSearch={props.updateSearch} updateResults={props.updateResults}  />
+    <SearchBar lang={props.lang} query={props.query} updateLang={props.updateLang} updateSearch={props.updateSearch} updateResults={props.updateResults} getResults={props.getResults}  />
     <Routes>
       <Route path="/search" element={<Search results={props.results} query={props.query} />} />
     </Routes>

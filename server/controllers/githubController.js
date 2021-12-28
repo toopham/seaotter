@@ -6,22 +6,21 @@ const octokit = new Octokit({ auth: token });
 
 githubController.search = async (req, res, next) => {
   const body = req.body;
-
-  const results = await octokit.request('GET /search/repositories', {
-    q: body.query
-  })
-
   res.locals.results = [];
+  if(body.query){
+    const results = await octokit.request('GET /search/repositories', {
+    q: body.query
+    });
 
-  if(results.status === 200){
-    for(let key in results.data.items){
-      console.log('DATA KEY ', key);
-      //console.log('DATA ', results.data[key]);
-      res.locals.results.push(results.data.items[key]);
+
+    if(results.status === 200){
+      for(let key in results.data.items){
+        res.locals.results.push(results.data.items[key]);
+      }
     }
   }
 
-  console.log('LENGTH: ', res.locals.results.length);
+
   return next();
 }
 

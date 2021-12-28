@@ -48,6 +48,8 @@ body{
 
 .search-input {
   color: white;
+  display: flex;
+  flex-direction: column;
 }
 input {
   width: 500px;
@@ -77,8 +79,6 @@ input {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-
-
 /* START : STYLING FOR FOOTER */
 .footer {
   height: 80px;
@@ -97,15 +97,16 @@ input {
 
 .checkboxes {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 .container {
   display: block;
   position: relative;
   padding-left: 30px;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  width: 150px;
   margin-left: 20px;
   cursor: pointer;
   font-size: 1em;

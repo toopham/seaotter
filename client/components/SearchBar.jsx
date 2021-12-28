@@ -1,15 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { updateLangActionCreator, updateResultsActionCreator } from '../actions/actions';
+import languages from '../constants/languages';
 
 const SearchBar = (props) => {
   const navigate = useNavigate();
 
-  const options =[{value: 'js', label: 'Javascript'}, {value: 'ts', label: 'Typescript'}, {value: 'py', label: 'Python'}];
-
   const checkboxes = [];
-  options.forEach(option => {
+  languages.forEach(option => {
     checkboxes.push(<label className="container" key={option.value}>{option.label}
     <input type="checkbox" id={option.value} checked={props.lang.includes(option.value)? "checked":""} onChange={(e) => langCheck(e)}/>
     <span className="checkmark"></span>
@@ -39,13 +36,7 @@ const SearchBar = (props) => {
 
   const enterSearch = (e) =>{
     if(e.key === 'Enter'){
-      axios.post('/api/search', {
-        query: props.query,
-        lang: props.lang
-      })
-        .then(res => res.data)
-        .then(data => props.updateResults(data))
-        .catch(err => console.log("ERROR: ", err));
+      props.getResults();
       navigate("/search", { replace: true});
     }
 
@@ -55,8 +46,8 @@ const SearchBar = (props) => {
     <h2>Seach GitHub Projects</h2>
       <input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
       <div className="checkboxes">
-        <h3>Languages</h3>
-        {checkboxes}
+        <h3>Languages</h3> 
+        <div>{checkboxes}</div>
       </div>
     </div>);
 };

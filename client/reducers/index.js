@@ -1,10 +1,15 @@
 import {combineReducers } from 'redux';
-
+import createSagaMiddleware from 'redux-saga';
 import searchReducer from './searchReducer';
+import { watcherSaga } from '../sagas/rootSaga';
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
 	search: searchReducer,
 
 });
 
-export default reducers;
+export const sagaMiddleWare = createSagaMiddleware();
+export const middleware = [sagaMiddleWare];
+
+
+

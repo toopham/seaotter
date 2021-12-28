@@ -1,3 +1,5 @@
 export const UPDATE_LANG = 'UPDATE_LANG';
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
+export const GET_RESULTS = 'GET_RESULTS';
+export const SET_RESULTS = 'SET_RESULTS';

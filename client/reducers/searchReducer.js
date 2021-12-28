@@ -1,6 +1,8 @@
 import * as types from '../constants/actionTypes';
+import languages from '../constants/languages';
 
-const initialState = {query: '', lang: ['js', 'ts', 'py'], results: []};
+const lang = languages.map(obj => obj.value);
+const initialState = {query: '', lang: lang, results: []};
 
 
 const searchReducer = (state = initialState, action) => {
@@ -10,9 +12,8 @@ const searchReducer = (state = initialState, action) => {
 
     case types.UPDATE_SEARCH:
       return {...state, query: action.payload};
-    
-    case types.UPDATE_RESULTS:
-      return {...state, results: action.payload};
+    case types.SET_RESULTS:
+      return {...state, results: action.results};
     default:
       return state;
   }

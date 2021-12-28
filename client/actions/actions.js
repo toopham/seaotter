@@ -10,8 +10,11 @@ export const updateSearchActionCreator = (query) => ({
   payload: query
 });
 
-export const updateResultsActionCreator = (results) => ({
-  type: types.UPDATE_RESULTS,
-  payload: results
-});
+export const getResultsActionCreator = () => ({
+  type: types.GET_RESULTS,
+})
 
+export const setResultsActionCreator = (results) => ({
+  type: types.SET_RESULTS,
+  results: results,
+})
