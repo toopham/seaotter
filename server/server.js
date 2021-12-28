@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
+const githubController = require('./controllers/githubController');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 app.use(express.json());
 
 //test
 app.get('/api/test', (req, res) => res.status(200).json({Message: 'CALLED API SUCCESSFULLY'}));
+app.get('/api/github', githubController.test, (req, res) => res.status(200).json(res.locals.results));
+
+
+app.post('/api/search', githubController.search, (req, res) => res.status(200).json(res.locals.results));
 
 
 //Error Catching from Middleware
