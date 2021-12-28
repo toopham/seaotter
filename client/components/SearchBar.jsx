@@ -5,12 +5,9 @@ import languages from '../constants/languages';
 const SearchBar = (props) => {
   const navigate = useNavigate();
 
-  const checkboxes = [];
+  const options = [<option value="any" selected>Any</option>];
   languages.forEach(option => {
-    checkboxes.push(<label className="container" key={option.value}>{option.label}
-    <input type="checkbox" id={option.value} checked={props.lang.includes(option.value)? "checked":""} onChange={(e) => langCheck(e)}/>
-    <span className="checkmark"></span>
-    </label>);
+    options.push(<option value={option.value} key={option.value}>{option.label}</option>);
   });
 
   const searchInput = (e) => {
@@ -18,18 +15,9 @@ const SearchBar = (props) => {
 
   };
 
-  const langCheck = (e) => {
-    let newLang = [];
-    //if the lang is checked, then remove
-    if(props.lang.includes(e.target.id)){
-      props.lang.forEach(lang => {
-        if(lang!=e.target.id) newLang.push(lang);
-      });
-    }
-    else{
-      newLang = [...props.lang];
-      newLang.push(e.target.id);
-    }
+  const langSelect = (e) => {
+    let newLang = e.target.value;
+		console.log('LANG NOW IS : ', e.target.value);
 
     props.updateLang(newLang);
   }
@@ -47,7 +35,11 @@ const SearchBar = (props) => {
       <input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
       <div className="checkboxes">
         <h3>Languages</h3> 
-        <div>{checkboxes}</div>
+        <div>
+					<select id='lang' onChange={(e) => langSelect(e)}>
+					{options}
+					</select>
+				</div>
       </div>
     </div>);
 };

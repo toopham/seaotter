@@ -1,8 +1,7 @@
 const githubController = {}
 const { Octokit } = require("@octokit/core");
-const token = require('../../token.js');
 
-const octokit = new Octokit({ auth: token });
+const octokit = new Octokit({ auth: '' });
 
 githubController.search = async (req, res, next) => {
   const body = req.body;

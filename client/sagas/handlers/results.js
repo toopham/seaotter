@@ -9,7 +9,7 @@ export function* handleGetResults(action) {
     const body = {query: state.search.query, lang: state.search.lang};
     const response = yield call(requestGetResults, body);
     const { data } = response;
-    yield put(setResultsActionCreator(data));
+    yield put(setResultsActionCreator(data.items));
   } catch (error) {
     console.log('ERROR : ', error);
   }

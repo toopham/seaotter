@@ -33,8 +33,8 @@ const MainContainer = (props) => {
   }, []);
 
 	return <div className="main">
-    <SearchBar lang={props.lang} query={props.query} updateLang={props.updateLang} updateSearch={props.updateSearch} updateResults={props.updateResults} getResults={props.getResults}  />
     <Routes>
+			<Route path="/" element={<SearchBar lang={props.lang} query={props.query} updateLang={props.updateLang} updateSearch={props.updateSearch} updateResults={props.updateResults} getResults={props.getResults}  />} />
       <Route path="/search" element={<Search results={props.results} query={props.query} />} />
     </Routes>
   </div>;

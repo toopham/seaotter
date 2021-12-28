@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 import languages from '../constants/languages';
 
 const lang = languages.map(obj => obj.value);
-const initialState = {query: '', lang: lang, results: []};
+const initialState = {query: '', lang: 'any', results: []};
 
 
 const searchReducer = (state = initialState, action) => {
