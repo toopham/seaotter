@@ -12,13 +12,14 @@ body{
   padding: 0px;
   margin: 0px;
   display: flex;
+  height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
 
-/* ****START****** STYLING FOR HEADER AND NAVBAR */
+/* ****START****** STYLING FOR HEADER  */
 .header {
   height: 80px;
   width: 100%;
@@ -31,25 +32,34 @@ body{
 }
 
 
-/* ****END****** STYLING FOR HEADER AND NAVBAR */
+/* ****END****** STYLING FOR HEADER */
 
 /* ****START****** STYLING FOR MAIN */
-
 .main {
   margin: 20px;
-  padding: 20px;
-  background-color: #2a9d8f;
+  padding: 0px;
   color: white;
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-direction: column;
-
 }
 
 .search-input {
+  background-color: #2a9d8f;
   color: white;
   display: flex;
+  padding: 10px;
   flex-direction: column;
+}
+
+.search-results {
+  background-color: #2a9d8f;
+  padding: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 input {
   width: 500px;
@@ -59,10 +69,9 @@ input {
 }
 
 /* START : STYLING FOR RESULT REPO CARD */
-
 .repo-card {
   width: 100%;
-  height: 300px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
@@ -76,13 +85,47 @@ input {
 }
 
 .repo-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 #535353;
+  border: 1px solid gainsboro;
+  cursor: pointer;
+}
+
+
+.repo-stats {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.repo-info {
+  border: 1px solid gainsboro;
+  font-size: .8em;
+  font-weight: bold;
+  border-radius: 5px 5px 5px 5px;
+  padding: 3px 5px 3px 5px;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.yellow {
+  color: #ffd166;
+}
+
+
+.page-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 /* START : STYLING FOR FOOTER */
 .footer {
   height: 80px;
   width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   background-color: #073b4c;
   font-family: 'Source Sans Pro', Arial, sans-serif;
   color: white;
@@ -93,79 +136,36 @@ input {
 }
 
 
-/* STYLE FOR CHECKBOX */
-
-.checkboxes {
+/* STYLE FOR SELECT OPTION */
+.options {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.container {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 15px;
-  width: 150px;
-  margin-left: 20px;
-  cursor: pointer;
-  font-size: 1em;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+
+.option {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  font-weight: bold;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* Hide the browser's default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+select {
+  margin-left: 5px;
+  margin-right: 20px;
+  padding: 2px;
 }
 
-/* Create a custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
+/* API ERROR - handling */
 
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+.error-message {
+  color: black;
+  padding: 10px;
+  border: 1px solid #e76f51;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

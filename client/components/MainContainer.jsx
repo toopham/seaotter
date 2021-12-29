@@ -1,21 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchBar from './SearchBar';
 import Search from './Search';
 import {Routes, Route } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
+import { connect} from 'react-redux';
 import * as actions from '../actions/actions';
 
-//mapState
+//map redux state to props
 const mapStateToProps = (state) => ({
-  lang: state.search.lang,
-  query: state.search.query,
-  results: state.search.results,
+  search: state.search,
 });
 
-//mapToDispatch
+//map redux actions to props
 const mapDispatchToProps = (dispatch) => ({
   updateLang: (lang) => {
     dispatch(actions.updateLangActionCreator(lang));
+  },
+  updateSort: (sort) => {
+    dispatch(actions.updateSortActionCreator(sort));
+  },
+  updateOrder: (order) => {
+    dispatch(actions.updateOrderActionCreator(order));
+  },
+  updatePage: (page) => {
+    dispatch(actions.updatePageActionCreator(page));
+  },
+  updatePerPage: (perpage) => {
+    dispatch(actions.updatePerPageActionCreator(perpage));
   },
   updateSearch: (query) => {
     dispatch(actions.updateSearchActionCreator(query));
@@ -26,16 +36,20 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MainContainer = (props) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(actions.getResultsActionCreator());
-  }, []);
 
 	return <div className="main">
-    <SearchBar lang={props.lang} query={props.query} updateLang={props.updateLang} updateSearch={props.updateSearch} updateResults={props.updateResults} getResults={props.getResults}  />
     <Routes>
-      <Route path="/search" element={<Search results={props.results} query={props.query} />} />
+			<Route path="/" element={<SearchBar search={props.search} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} updateSearch={props.updateSearch} getResults={props.getResults}  />} />
+      <Route path="/search" element={
+      <Search results={props.results} 
+        search={props.search} 
+        updateLang={props.updateLang} 
+        updateSort={props.updateSort} 
+        updateOrder={props.updateOrder} 
+        updateSearch={props.updateSearch} 
+        updatePage={props.updatePage}
+        updatePerPage={props.updatePerPage}
+        getResults={props.getResults}/>} />
     </Routes>
   </div>;
 };
