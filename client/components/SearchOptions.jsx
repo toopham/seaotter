@@ -91,7 +91,8 @@ const SearchOptions = (props) =>{
         className="select-order" 
         width='100px' 
         styles={customStyles} 
-        onChange={(e)=> optionSelect('order',e)} />
+        onChange={(e)=> optionSelect('order',e)} 
+      />
     </div>
   </div>);
 

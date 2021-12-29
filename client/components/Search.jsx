@@ -15,7 +15,15 @@ const Search = (props) => {
     })
   }
 
-  return <><SearchBar path={'search'} search={props.search} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} updateSearch={props.updateSearch} getResults={props.getResults}/>
+  return <>
+    <SearchBar path={'search'} 
+      search={props.search} 
+      updateLang={props.updateLang} 
+      updateSort={props.updateSort} 
+      updateOrder={props.updateOrder} 
+      updateSearch={props.updateSearch} 
+      getResults={props.getResults}
+    />
     <div className="search-results">
 		<div className="box-info">
       <div><h3>Results:</h3></div> 
@@ -24,7 +32,8 @@ const Search = (props) => {
     <PageNav search={props.search} updatePage={props.updatePage} updatePerPage={props.updatePerPage} getResults={props.getResults} />
     {repos.length? repos:props.search.error? 'Error Occurred':'Zero Match.'}
     <Error error={props.search.error} />
-    </div></>;
+    </div>
+  </>;
 };
 
 export default Search;

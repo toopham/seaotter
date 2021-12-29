@@ -29,6 +29,8 @@ export function* handleGetResults(action) {
     //update search results
     yield put(setResultsActionCreator(data.items));
   } catch (error) {
+    yield put(setTotalsActionCreator(0));
+    yield put(setResultsActionCreator([]));
     yield put(setErrorActionCreator(error.message));
     console.log('ERROR : ', error);
   }
