@@ -1,5 +1,12 @@
+/* ACTION CONSTANTS for redux*/
 export const UPDATE_LANG = 'UPDATE_LANG';
+export const UPDATE_SORT = 'UPDATE_SORT';
+export const UPDATE_ORDER = 'UPDATE_ORDER';
+export const UPDATE_PAGE = 'UPDATE_PAGE';
+export const UPDATE_PERPAGE = 'UPDATE_PERPAGE';
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_RESULTS = 'UPDATE_RESULTS';
 export const GET_RESULTS = 'GET_RESULTS';
 export const SET_RESULTS = 'SET_RESULTS';
+export const SET_TOTALS = 'SET_TOTALS';
+export const SET_ERROR = 'SET_ERROR';
