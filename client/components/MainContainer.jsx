@@ -41,8 +41,7 @@ const MainContainer = (props) => {
     <Routes>
 			<Route path="/" element={<SearchBar search={props.search} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} updateSearch={props.updateSearch} getResults={props.getResults}  />} />
       <Route path="/search" element={
-      <Search results={props.results} 
-        search={props.search} 
+      <Search search={props.search} 
         updateLang={props.updateLang} 
         updateSort={props.updateSort} 
         updateOrder={props.updateOrder} 

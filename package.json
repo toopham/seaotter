@@ -4,7 +4,7 @@
   "description": "Sea Otter App to search for github projects with language specification",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest --verbose",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "cross-env NODE_ENV=development webpack serve --open --hot"
   },
@@ -25,6 +25,9 @@
     "url": "https://github.com/toopham/seaotter/issues"
   },
   "homepage": "https://github.com/toopham/seaotter#readme",
+	"jest": {
+		"testEnvironment": "jsdom"
+	},
   "dependencies": {
     "@octokit/core": "^3.5.1",
     "axios": "^0.24.0",
@@ -42,12 +45,16 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "babel-loader": "^8.2.3",
     "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
+    "enzyme": "^3.11.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15",
+    "redux-mock-store": "^1.5.4",
     "style-loader": "^3.3.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
