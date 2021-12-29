@@ -17,10 +17,12 @@ const Search = (props) => {
 
   return <><SearchBar path={'search'} search={props.search} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} updateSearch={props.updateSearch} getResults={props.getResults}/>
     <div className="search-results">
-		<h2>Results: {props.search.query}</h2>
-		<h3>Total: {props.search.total}</h3>
+		<div className="box-info">
+      <div><h3>Results:</h3></div> 
+      <div className="box-inner"><h3>{props.search.query}</h3></div>
+    </div>
     <PageNav search={props.search} updatePage={props.updatePage} updatePerPage={props.updatePerPage} getResults={props.getResults} />
-    {repos.length? repos:'Zero Match.'}
+    {repos.length? repos:props.search.error? 'Error Occurred':'Zero Match.'}
     <Error error={props.search.error} />
     </div></>;
 };

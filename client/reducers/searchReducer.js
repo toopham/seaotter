@@ -1,6 +1,15 @@
 import * as types from '../constants/actionTypes';
 
-const initialState = {query: '', lang: 'any', sort: 'stars', order: 'desc', page: 1, perpage: 30, results: [], total: 0, error: ''};
+const initialState = {query: '', 
+  lang: {value:'all', 
+  label:'All'}, 
+  sort: {value:'stars', label: 'Stars'}, 
+  order: {value:'desc', label: 'DESC'}, 
+  page: 1, 
+  perpage: 30, 
+  results: [], 
+  total: 0, 
+  error: ''};
 
 
 const searchReducer = (state = initialState, action) => {

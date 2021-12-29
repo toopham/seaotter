@@ -12,6 +12,6 @@ const languages =[{value: 'javascript', label: 'JavaScript'},
 {value: 'assembly', label: 'Assembly'}, 
 {value: 'sh', label: 'Shell'}, 
 {value: 'html', label: 'HTML'}, 
-{value: 'jupyternotebook', label: 'Jupyter Notebook'}];
+{value: 'jupyter-notebook', label: 'Jupyter Notebook'}];
 
 export default languages;

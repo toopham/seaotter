@@ -1,35 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import languages from '../constants/languages';
+import SearchOptions from './SearchOptions';
 
 const SearchBar = (props) => {
-  const navigate = useNavigate();
-
-  /* START Create Search Params/Options*/
-  const options = [<option value="any" key={'any'}>Any</option>];
-  languages.forEach(option => {
-    options.push(<option value={option.value} key={option.value}>{option.label}</option>);
-  });
-  const sorts = [<option value="none" key={'none1'}>None</option>, <option value="stars" key={'stars'}>Stars</option>, <option value="forks" key={'forks'}>Forks</option>, <option value="help-wanted-issues" key={'issues'}>Help Issues</option>,<option value="updated" key={'updated'}>Updated</option>]
-  const orders =[<option value="none" key={'none2'}>None</option>, <option value="desc" key={'desc'}>DESC</option>, <option value="asc" key={'asc'}>ASC</option>];
-
-  const searchInput = (e) => {
-    props.updateSearch(e.target.value);
-    if(props.path==='search') props.getResults();
-  };
-
-  const optionSelect = (e) => {
-    const option = e.target.value;
-    const id = e.target.id;
-
-    if(id==='lang') props.updateLang(option);
-    else if(id==='sort') props.updateSort(option);
-    else if(id==='order') props.updateOrder(option);
-
-    if(props.path==='search') props.getResults();
-  }
-
-  /* END OF Search Params/Options*/
 
   //If key pressed is entered in search 
   const enterSearch = (e) =>{
@@ -38,6 +11,7 @@ const SearchBar = (props) => {
     }
   }
 
+  const navigate = useNavigate();
 	//call GET_RESULTS action to trigger redux saga 
   //then navigate to path /search
 	const search = () =>{
@@ -45,40 +19,20 @@ const SearchBar = (props) => {
     if(props.path!='search') navigate("/search", { replace: true});
 	}
 
-  //If path is changed to /search then fill search input and language option with values from state
-  useEffect(()=>{
-    const searchInput = document.getElementById('search-input');
-    if(searchInput) searchInput.value = props.search.query;
+  //onChange from search-input
+  const searchInput = (e) => {
+    props.updateSearch(e.target.value);
+    if(props.path==='search') props.getResults();
+  };
 
-    const language = document.getElementById('lang');
-    if(language) language.value = props.search.lang;
-
-  }, [props.path]);
-
-  return (<div className="search-input">
-    <h2>Seach GitHub Projects</h2>
-		<div>
-			<input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
-			<button id="search" onClick={() => search()}>Search</button>
-		</div>
-		<div className="options">
-			<div className="option">Language 
-				<select id='lang' onChange={(e) => optionSelect(e)}>
-					{options}
-				</select>
-			</div>
-			<div className="option">Sort by 
-				<select id='sort' onChange={(e) => optionSelect(e)}>
-					{sorts}
-				</select>
-			</div>
-			<div className="option">Order by 
-				<select id='order' onChange={(e) => optionSelect(e)}>
-					{orders}
-				</select>
-			</div>
-		</div>
-    </div>);
+  return (<div className="search-bar">
+      <h2>Seach GitHub Projects</h2>
+      <div className="search-div">
+        <input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
+        <button id="search" onClick={() => search()}>Search</button>
+      </div>
+      <SearchOptions search={props.search} path={props.path? props.path:'home'} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} getResults={props.getResults}/>
+  </div>);
 };
 
 export default SearchBar;

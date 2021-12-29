@@ -3,6 +3,7 @@ import { configure, shallow, mount} from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
+import Select from 'react-select';
 
 import Error from '../client/components/Error';
 import Footer from '../client/components/Footer';
@@ -12,6 +13,8 @@ import PageNav from '../client/components/PageNav';
 import RepoCard from '../client/components/RepoCard';
 import Search from '../client/components/Search';
 import SearchBar from '../client/components/SearchBar';
+import SearchOptions from '../client/components/SearchOptions';
+
 
 import configureStore from 'redux-mock-store';
 
@@ -82,11 +85,11 @@ describe('React unit tests', () => {
       expect(wrapper.type()).toEqual('div');
 		});
 
-		it('Renders a div of className page-nav with two children elements', () => {
-      expect(wrapper.find({ className: 'page-nav' }).children()).toHaveLength(2);
+		it('Renders a div of className options with 3 children elements', () => {
+      expect(wrapper.find({ className: 'options' }).children()).toHaveLength(3);
 		});
-		it('Renders 2 div elements with className option', () => {
-			expect(wrapper.find({ className: 'option' })).toHaveLength(2);
+		it('Renders 3 div elements with className option', () => {
+			expect(wrapper.find({ className: 'option' })).toHaveLength(3);
 		});
 		it('Renders 2 select with id page and perpage', () => {
       expect(wrapper.find({id: 'page'}).type()).toEqual('select');
@@ -200,7 +203,9 @@ describe('React unit tests', () => {
 
     it('Render a <div> tag with h2 element', () => {
       expect(wrapper.find({ className: 'search-results' }).type()).toEqual('div');
-      expect(wrapper.find('h2').text()).toEqual('Results: seaotter');
+      expect(wrapper.find({ className: 'box-info'}).children()).toHaveLength(2);
+      expect(wrapper.find({ className: 'box-info'}).text()).toEqual('Results:seaotter');
+      expect(wrapper.find({ className: 'box-inner'}).text()).toEqual('seaotter');
     });
 
   });
@@ -208,6 +213,7 @@ describe('React unit tests', () => {
 	describe('SearchBar component', () => {
     let wrapper;
     const props = {
+      path: 'search',
 			search: {error: '404', query: 'seaotter', results: [{html_url: 'myurl1', repo: 'a'},{html_url: 'myurl2', repo: 'b'}]},
 			updateLang: jest.fn(() => 'update lang'),
 			updateSort: jest.fn(() => 'update sort'),
@@ -222,13 +228,43 @@ describe('React unit tests', () => {
     });
 
 
-    it('Render a div wrapper of className search-input with 3 children', () => {
-      expect(wrapper.find({ className: 'search-input'})).toHaveLength(1);
-			expect(wrapper.find({ className: 'search-input'}).children()).toHaveLength(3);
+    it('Render a div wrapper of className search-bar with 3 children', () => {
+      expect(wrapper.find({ className: 'search-bar'})).toHaveLength(1);
+			expect(wrapper.find({ className: 'search-bar'}).children()).toHaveLength(3);
     });
 
 		it('Render h2 header', () => {
       expect(wrapper.find('h2').text()).toEqual('Seach GitHub Projects'); 
+    });
+
+    it('Render search-input', () => {
+      expect(wrapper.find({ id: 'search-input'})).toHaveLength(1);
+    });
+
+    it('Render search button', () => {
+      expect(wrapper.find('button')).toHaveLength(1); 
+      expect(wrapper.find({id: 'search'}).type()).toEqual('button'); 
+    });
+
+    it('Render SearchOptions component', () => {
+      expect(wrapper.find(SearchOptions)).toHaveLength(1); 
+    });
+
+  });
+
+  describe('SearchOptions component', () => {
+    let wrapper;
+    const props = {
+      search: {error: '404', query: 'seaotter', results: [{html_url: 'myurl1', repo: 'a'},{html_url: 'myurl2', repo: 'b'}]},
+      path: 'search',
+      updateLang: jest.fn((e) => 'update lang'),
+      updateSort: jest.fn((e) => 'update sort'),
+      updateOrder: jest.fn((e) => 'update order'),
+      getResults: jest.fn((e) => 'get results'),
+    };
+
+    beforeAll(() => {
+      wrapper = shallow(<SearchOptions {...props} />);
     });
 
 		it('Render a div tag className options with 3 children', () => {
@@ -237,12 +273,13 @@ describe('React unit tests', () => {
 			expect(wrapper.find({className: 'option'})).toHaveLength(3); 
     });
 
-    it('Render three selects of id lang, sort, and order', () => {
-      expect(wrapper.find({ id: 'lang' }).type()).toEqual('select');
-			expect(wrapper.find({ id: 'sort' }).type()).toEqual('select');
-			expect(wrapper.find({ id: 'order' }).type()).toEqual('select');
-      expect(wrapper.find('select')).toHaveLength(3);
+    it('Render 3 Select components', () => {
+      expect(wrapper.find(Select)).toHaveLength(3); 
+      expect(wrapper.find({ className: 'select-lang' })).toHaveLength(1);
+      expect(wrapper.find({ className: 'select-sort' })).toHaveLength(1);
+      expect(wrapper.find({ className: 'select-order' })).toHaveLength(1);
     });
+
 
   });
 });

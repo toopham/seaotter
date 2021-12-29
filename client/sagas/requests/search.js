@@ -6,9 +6,9 @@ export function requestGetResults(body) {
 	let order = '';
   if(body.query) query = body.query.replace(' ', '+');
   let lang = '';
-  if(body.lang!='any') lang = '+language:'+body.lang;
-	if(body.sort!='none') sort = '&sort='+body.sort;
-	if(body.order!='none') order = '&order='+body.order;
+  if(body.lang.value!='all') lang = '+language:'+body.lang.value;
+	if(body.sort.value) sort = '&sort='+body.sort.value;
+	if(body.order.value) order = '&order='+body.order.value;
 
   return axios.request({
     method: 'get',

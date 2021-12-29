@@ -25,7 +25,8 @@ const PageNav = (props) => {
     props.getResults();
   };
 
-  return <div className="page-nav">
+  return <div className="options">
+    <div className="option">Total: {props.search.total}</div>
     <div className="option">Items per page:  
           <select id='perpage' onChange={(e) => optionSelect(e)} defaultValue={30}>
 					  {options}
