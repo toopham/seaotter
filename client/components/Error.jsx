@@ -5,7 +5,7 @@ const Error = (props) => {
   return props.error? <div className="error-message">
     <h3>Cannot Connect to GitHub API</h3> 
     <p>{props.error}</p>
-    </div>:'';
+  </div>:'';
 };
 
 export default Error;

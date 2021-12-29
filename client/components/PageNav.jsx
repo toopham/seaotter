@@ -28,14 +28,14 @@ const PageNav = (props) => {
   return <div className="options">
     <div className="option">Total: {props.search.total}</div>
     <div className="option">Items per page:  
-          <select id='perpage' onChange={(e) => optionSelect(e)} defaultValue={30}>
-					  {options}
-					</select>
+      <select id='perpage' onChange={(e) => optionSelect(e)} defaultValue={30}>
+        {options}
+      </select>
 		</div>
     <div className="option">Page 
-          <select id='page' onChange={(e) => optionSelect(e)}>
-					  {pages}
-					</select>
+      <select id='page' onChange={(e) => optionSelect(e)}>
+        {pages}
+      </select>
 		</div>
   </div>;
 };

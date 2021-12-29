@@ -13,7 +13,7 @@ const App = (props) => {
     <Header />
     <MainContainer />
     <Footer />
-    </Router>);
+  </Router>);
 }
 
 export default App;

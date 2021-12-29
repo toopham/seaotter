@@ -26,12 +26,18 @@ const SearchBar = (props) => {
   };
 
   return (<div className="search-bar">
-      <h2>Seach GitHub Projects</h2>
-      <div className="search-div">
-        <input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
-        <button id="search" onClick={() => search()}>Search</button>
-      </div>
-      <SearchOptions search={props.search} path={props.path? props.path:'home'} updateLang={props.updateLang} updateSort={props.updateSort} updateOrder={props.updateOrder} getResults={props.getResults}/>
+    <h2>Seach GitHub Projects</h2>
+    <div className="search-div">
+      <input type="text" placeholder="search for repositories" id="search-input" autoFocus onChange={(e) => searchInput(e)} onKeyUp={(e) => enterSearch(e)}/>
+      <button id="search" onClick={() => search()}>Search</button>
+    </div>
+    <SearchOptions search={props.search} 
+      path={props.path? props.path:'home'} 
+      updateLang={props.updateLang} 
+      updateSort={props.updateSort} 
+      updateOrder={props.updateOrder} 
+      getResults={props.getResults}
+    />
   </div>);
 };
 

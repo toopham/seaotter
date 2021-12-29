@@ -4,7 +4,6 @@ import searchReducer from './searchReducer';
 
 export const reducers = combineReducers({
 	search: searchReducer,
-
 });
 
 export const sagaMiddleWare = createSagaMiddleware();
